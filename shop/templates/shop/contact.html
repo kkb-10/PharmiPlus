@@ -6,15 +6,15 @@
 <div class="container my-3">
     <h3>Contact Us</h3>
     <form action="/shop/contact/" method="POST">{% csrf_token %}
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-        </div>
-
+        </div> -->
+<!-- 
         <div class="form-group">
             <label for="name">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
-          </div>
+          </div> -->
 
           <div class="form-group">
             <label for="name">Phone</label>
@@ -39,6 +39,9 @@ alert('Thanks for contacting us. We will get back to you soon!');
 
 document.location = "/shop/contact";
 {% endif %}
+
+
+
 </script>
 
 {% endblock %}

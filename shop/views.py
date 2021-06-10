@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Product, Contact,Orders,OrderUpdate
+from .models import Homeaddr, Product, Contact,Orders,OrderUpdate
 from django.contrib import messages
 from math import ceil
 import json
@@ -39,15 +39,18 @@ def about(request):
 def contact(request):
     thank = False
     if request.method=="POST":
-        name = request.POST.get('name', '')
-        email = request.POST.get('email', '')
+        name = request.user.username
+        # email = request.POST.get('email', '')
         phone = request.POST.get('phone', '')
         desc = request.POST.get('desc', '')
-        contact = Contact(name=name, email=email, phone=phone, desc=desc)
+        contact = Contact(username=name, phone=phone, desc=desc)
         contact.save()
         thank = True
         messages.success(request, 'Your message has been sent!')
-    return render(request, 'shop/contact.html', {'thank': thank})
+    if request.user.is_authenticated:
+        return render(request, 'shop/contact.html', {'thank': thank})
+    
+    return render(request, 'shop/login.html')
 
 def tracker(request):
     if request.method=="POST":
@@ -93,15 +96,25 @@ def checkout(request):
         user = ''
         if request.user.is_authenticated:
             user = request.user.username
-        # email=request.POST.get('email', '')
         address=request.POST.get('address1', '') + " " + request.POST.get('address2', '')
         city=request.POST.get('city', '')
         state=request.POST.get('state', '')
         zip_code=request.POST.get('zip_code', '')
         phone=request.POST.get('phone', '')
 
-        order = Orders(items_json= items_json, name=name, user=user, address= address, city=city, state=state, zip_code=zip_code, phone=phone)
-        order.save()
+        selected=request.POST.get('home')
+        print(selected)
+        homeaddress=Homeaddr.objects.raw('select * from shop_homeaddr where user="'+user+'"')
+        if selected=='true':
+            for i in homeaddress:
+                print (i.user,i.home_address)
+                address=i.home_address
+                order = Orders(items_json= items_json, name=name, user=user, address= address, city=city, state=state, zip_code=zip_code, phone=phone)
+                order.save()
+                break
+        else:
+            order = Orders(items_json= items_json, name=name, user=user, address= address, city=city, state=state, zip_code=zip_code, phone=phone)
+            order.save()
         update= OrderUpdate(order_id= order.order_id, update_desc="The order has been placed")
         update.save()
         update = OrderUpdate(order_id=order.order_id, update_desc="The order has been placed")
@@ -147,3 +160,30 @@ def register(request):
     else:
         form= UserCreationForm()
     return render(request,'shop/register.html' ,{'form':form})
+
+def homeaddr(request):
+    if request.method=="POST":
+        user = ''
+        if request.user.is_authenticated:
+            user = request.user.username
+        home_address=request.POST.get('address')
+        print(user,home_address)
+        update= Homeaddr(user= user, home_address=home_address)
+        update.save()
+    return render(request,'shop/homeaddr.html')
+
+
+def adminreply(request):
+    user = ''
+    if request.user.is_authenticated:
+        user = request.user.username
+    query='select * from shop_contact where username="'+user+'"'
+    reply=Contact.objects.raw(query)
+    f=0
+    for i in reply:
+        f=1
+        print(i.desc,"   ",i.adminReply)
+        if(i.adminReply==''):
+            i.adminReply="Waiting for Reply"
+            
+    return render(request,'shop/adminreply.html',{'reply':reply})

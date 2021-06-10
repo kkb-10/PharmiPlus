@@ -17,13 +17,14 @@ class Product(models.Model):
 
 class Contact(models.Model):
     msg_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=70, default="")
+    username = models.CharField(max_length=50)
+    # email = models.CharField(max_length=70, default="")
     phone = models.CharField(max_length=70, default="")
     desc = models.CharField(max_length=500, default="")
+    adminReply = models.CharField(max_length=500, default="")
 
     def __str__(self):
-        return self.name
+        return self.username
 
 class Orders(models.Model):
     order_id= models.AutoField(primary_key=True)
@@ -39,6 +40,12 @@ class Orders(models.Model):
     def __str__(self):
         return self.name
 
+class Homeaddr(models.Model):
+    user=models.CharField(max_length=90)
+    home_address=models.CharField(max_length=111)
+
+    def __str__(self):
+        return self.user
 
 class OrderUpdate(models.Model):
     update_id= models.AutoField(primary_key=True)

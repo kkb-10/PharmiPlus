@@ -1,0 +1,14 @@
+{% extends 'shop/basic.html' %}
+
+{%block title%} Admin Reply {% endblock %}</title>
+{% block body%} 
+<h3 align="center">Admin Reply</h3>
+
+    {% for item in reply %}
+        <li class="list-group-item d-flex justify-content-between align-items-center ">
+            <span class="badge badge-primary badge-pill">Query Description: {{item.desc}} </span> 
+            <br>
+            <span class="badge badge-primary badge-pill">Admin Reply: {{item.adminReply}}</span> </li>
+    {% endfor %}
+
+{% endblock %}

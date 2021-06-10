@@ -1,0 +1,10 @@
+{% extends 'shop/basic.html' %}
+{% block title%} Checkout - My Awesome Cart{% endblock %}
+{% block body %}
+    <h2>Add Home Address</h2>
+    <form method="POST" action="/shop/homeaddr/"> {% csrf_token %}
+        <label for="address">Enter Home Address</label>
+        <input type="text" id="address" name="address" placeholder="Enter Home Address">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
