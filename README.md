@@ -8,6 +8,8 @@
 - User Queries can also be dealt using Contact Us form.
 - Admin Replies to each query of the logged in user is also provided.
 
+Website Link: https://gunjan3103.pythonanywhere.com/shop/
+
 ## Technology Stack
 
 ***Languages->*** HTML, CSS, JavaScript, Python
