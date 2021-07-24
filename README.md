@@ -16,7 +16,7 @@ Website Link: https://gunjan3103.pythonanywhere.com/shop/
 
 ***Tools and Frameworks->*** Django
 
-***Database->*** SQL
+***Database->*** SQLite
 
 ## How to Run the project
 
