@@ -34,3 +34,13 @@ Website Link: https://gunjan3103.pythonanywhere.com/shop/
 - To create a super user to access the django admin, run this command:
 
     - python manage.py createsuperuser   
+
+## Author
+
+Kirti Kunj Bajpai
+
+Interests-> Development and Data Structures and Algorithm
+
+If you have any queries/doubts regarding the project, mail me at kkbajpai.kk@gmail.com
+
+If you liked the repo then please support it by giving it a star ⭐!
