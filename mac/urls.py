@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-
+from django.views.static import serve
 
 
 
@@ -27,7 +27,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include("shop.urls")),
-    path('', views.index)
+    path('', views.index),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
   
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
