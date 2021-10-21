@@ -26,7 +26,7 @@ SECRET_KEY = '1=ez)a4b&ak#z$zsbk3cjcqu_rplg^_qrjdn9rao%83@gyu3#q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','pharmi-plus.herokuapp.com']
 
 
 # Application definition
