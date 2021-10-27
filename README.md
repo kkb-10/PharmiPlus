@@ -20,24 +20,41 @@ Website Link: https://gunjan3103.pythonanywhere.com/shop/
 
 ## How to Run the project
 
-- Setup Virtual Environment
-- Activate Virtual Environment
-- Intall Django and Pillow using these commands:
+### Setup and Activate Virtual Environment
 
-    - pip install django
-    - pip install Pillow
-- Then Run Following Commands:
+- For Windows
+```sh
+pip install virtualenv 
+virtualenv myenv
+myenv\Scripts\activate
+```
 
-    - python manage.py makemigrations
-    - python manage.py migrate
-    - python manage.py runserver
-- To create a super user to access the django admin, run this command:
+- For Linux
+```sh
+pip install virtualenv
+virtualenv virtualenv_name
+source virtualenv_name/bin/activate
+```
 
-    - python manage.py createsuperuser   
+### Intall all requirements
+```sh
+pip install -r requirements.txt 
+```
+### Then Run Following Commands
+```sh
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+
+### To create a super user to access the django admin:
+```sh
+python manage.py createsuperuser   
+```
 
 ## Author
 
-Kirti Kunj Bajpai
+👤 **Kirti Kunj Bajpai**
 
 Interests-> Development and Data Structures and Algorithm
 
